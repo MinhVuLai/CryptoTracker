@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct HomeView: View {
     
     @State private var showPortfolio: Bool = false
@@ -27,6 +28,7 @@ struct HomeView: View {
         }
     }
 }
+
 
 extension HomeView {
     
@@ -55,6 +57,7 @@ extension HomeView {
         .padding(.horizontal)
     }
 }
+
 
 #Preview {
     HomeView()
