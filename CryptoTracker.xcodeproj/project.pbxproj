@@ -24,6 +24,7 @@
 		0976F9E82C43BAE100E0CFE4 /* CoinImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0976F9E72C43BAE100E0CFE4 /* CoinImageView.swift */; };
 		0976F9EA2C43BAFF00E0CFE4 /* CoinImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0976F9E92C43BAFF00E0CFE4 /* CoinImageViewModel.swift */; };
 		0976F9EC2C43BC1000E0CFE4 /* CoinImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0976F9EB2C43BC1000E0CFE4 /* CoinImageService.swift */; };
+		0976F9EF2C43BFC000E0CFE4 /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0976F9EE2C43BFC000E0CFE4 /* LocalFileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		0976F9E72C43BAE100E0CFE4 /* CoinImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageView.swift; sourceTree = "<group>"; };
 		0976F9E92C43BAFF00E0CFE4 /* CoinImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageViewModel.swift; sourceTree = "<group>"; };
 		0976F9EB2C43BC1000E0CFE4 /* CoinImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageService.swift; sourceTree = "<group>"; };
+		0976F9EE2C43BFC000E0CFE4 /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				0976F9E42C43B49C00E0CFE4 /* NetworkingManager.swift */,
+				0976F9EE2C43BFC000E0CFE4 /* LocalFileManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				0976F9D22C42E67000E0CFE4 /* CircleButtonView.swift in Sources */,
 				0976F9DF2C43AC8300E0CFE4 /* HomeViewModel.swift in Sources */,
 				0976F9C82C42E1C000E0CFE4 /* Color.swift in Sources */,
+				0976F9EF2C43BFC000E0CFE4 /* LocalFileManager.swift in Sources */,
 				0976F9D72C42EA5700E0CFE4 /* CoinModel.swift in Sources */,
 				0976F9DB2C42EDD800E0CFE4 /* PreviewProvider.swift in Sources */,
 				0976F9D92C42ED9800E0CFE4 /* CoinRowView.swift in Sources */,
