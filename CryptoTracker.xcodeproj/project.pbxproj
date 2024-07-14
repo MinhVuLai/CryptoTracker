@@ -19,6 +19,7 @@
 		0976F9DB2C42EDD800E0CFE4 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0976F9DA2C42EDD800E0CFE4 /* PreviewProvider.swift */; };
 		0976F9DD2C42F1AA00E0CFE4 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0976F9DC2C42F1AA00E0CFE4 /* Double.swift */; };
 		0976F9DF2C43AC8300E0CFE4 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0976F9DE2C43AC8300E0CFE4 /* HomeViewModel.swift */; };
+		0976F9E22C43B0F300E0CFE4 /* CoinDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0976F9E12C43B0F300E0CFE4 /* CoinDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		0976F9DA2C42EDD800E0CFE4 /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		0976F9DC2C42F1AA00E0CFE4 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		0976F9DE2C43AC8300E0CFE4 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		0976F9E12C43B0F300E0CFE4 /* CoinDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,8 +69,9 @@
 		0976F9B52C42E04800E0CFE4 /* CryptoTracker */ = {
 			isa = PBXGroup;
 			children = (
-				0976F9D52C42EA2100E0CFE4 /* Models */,
 				0976F9C62C42E1B000E0CFE4 /* Extensions */,
+				0976F9E02C43B0D200E0CFE4 /* Services */,
+				0976F9D52C42EA2100E0CFE4 /* Models */,
 				0976F9C92C42E44000E0CFE4 /* Core */,
 				0976F9B62C42E04800E0CFE4 /* CryptoTrackerApp.swift */,
 				0976F9C42C42E14F00E0CFE4 /* Assets.xcassets */,
@@ -155,6 +158,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		0976F9E02C43B0D200E0CFE4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0976F9E12C43B0F300E0CFE4 /* CoinDataService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -235,6 +246,7 @@
 				0976F9D92C42ED9800E0CFE4 /* CoinRowView.swift in Sources */,
 				0976F9DD2C42F1AA00E0CFE4 /* Double.swift in Sources */,
 				0976F9D42C42E84E00E0CFE4 /* CircleButtonAnimationView.swift in Sources */,
+				0976F9E22C43B0F300E0CFE4 /* CoinDataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
