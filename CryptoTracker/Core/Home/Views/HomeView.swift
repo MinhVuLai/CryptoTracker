@@ -10,6 +10,7 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @EnvironmentObject private var viewModel: HomeViewModel
     @State private var showPortfolio: Bool = false
     
     var body: some View {
@@ -22,6 +23,16 @@ struct HomeView: View {
             // Content Layer
             VStack {
                 homeHeader
+                
+                columnTitles
+                
+                if !showPortfolio {
+                    allCoinsList
+                        .transition(.move(edge: .leading))
+                } else {
+                    portfolioCoinsList
+                        .transition(.move(edge: .trailing))
+                }
                 
                 Spacer(minLength: 0)
             }
@@ -56,9 +67,49 @@ extension HomeView {
         }
         .padding(.horizontal)
     }
+    
+    
+    private var allCoinsList: some View {
+        List {
+            ForEach(viewModel.allCoins) { coin in
+                CoinRowView(coin: coin, showHoldingColumn: false)
+                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+            }
+        }
+        .listStyle(PlainListStyle())
+    }
+    
+    
+    private var portfolioCoinsList: some View {
+        List {
+            ForEach(viewModel.portfolioCoins) { coin in
+                CoinRowView(coin: coin, showHoldingColumn: true)
+                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+            }
+        }
+        .listStyle(PlainListStyle())
+    }
+    
+    
+    private var columnTitles: some View {
+        HStack {
+            Text("Coin")
+            
+            Spacer()
+            
+            Text(showPortfolio ? "Holdings" : "")
+            
+            Text("Price")
+                .frame(width: UIScreen.main.bounds.width / 3, alignment: .trailing)
+        }
+        .font(.caption)
+        .foregroundStyle(Color.theme.secondaryText)
+        .padding(.horizontal)
+    }
 }
 
 
 #Preview {
     HomeView()
+        .environmentObject(DeveloperPreview.instance.homeViewModel)
 }

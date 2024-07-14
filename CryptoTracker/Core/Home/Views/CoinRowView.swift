@@ -48,6 +48,7 @@ extension CoinRowView {
         }
     }
     
+    
     private var centerColumn: some View {
         VStack(alignment: .trailing) {
             Text(coin.currentHoldingValue.asCurrencyWith2Decimals())
@@ -56,6 +57,7 @@ extension CoinRowView {
         }
         .foregroundStyle(Color.theme.accent)
     }
+    
     
     private var rightColumn: some View {
         VStack(alignment: .trailing) {
@@ -72,6 +74,7 @@ extension CoinRowView {
         }
         .frame(width: UIScreen.main.bounds.width / 3, alignment: .trailing)
     }
+    
 }
 
 
