@@ -17,15 +17,15 @@ struct HomeStatsView: View {
         HStack {
             ForEach(viewModel.statistics) { stat in
                 StatisticView(stat: stat)
-                    .frame(width: UIScreen.main.bounds.width / 3)
+                    .frame(width: Double(UIScreen.current?.bounds.size.width ?? 0) / 3)
             }
         }
-        .frame(width: UIScreen.main.bounds.width / 3, alignment: showPortfolio ? .trailing : .leading)
+        .frame(width: UIScreen.current?.bounds.size.width, alignment: showPortfolio ? .trailing : .leading)
     }
 }
 
 
 #Preview {
-    HomeStatsView(showPortfolio: .constant(false))
-        .environmentObject(DeveloperPreview.instance.homeViewModel)
+    HomeStatsView(showPortfolio: .constant(true))
+        .environmentObject(PreviewSamples.homeViewModel)
 }

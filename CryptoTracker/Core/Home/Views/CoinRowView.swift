@@ -72,12 +72,12 @@ extension CoinRowView {
                     Color.theme.red
                 )
         }
-        .frame(width: UIScreen.main.bounds.width / 3, alignment: .trailing)
+        .frame(width: Double(UIScreen.current?.bounds.size.width ?? 0) / 3, alignment: .trailing)
     }
     
 }
 
 
 #Preview {
-    CoinRowView(coin: DeveloperPreview.instance.coin, showHoldingColumn: true)
+    CoinRowView(coin: PreviewSamples.coin, showHoldingColumn: true)
 }

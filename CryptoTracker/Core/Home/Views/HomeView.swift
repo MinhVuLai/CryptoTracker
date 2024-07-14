@@ -104,7 +104,7 @@ extension HomeView {
             Text(showPortfolio ? "Holdings" : "")
             
             Text("Price")
-                .frame(width: UIScreen.main.bounds.width / 3, alignment: .trailing)
+                .frame(width: Double(UIScreen.current?.bounds.size.width ?? 0) / 3, alignment: .trailing)
         }
         .font(.caption)
         .foregroundStyle(Color.theme.secondaryText)
@@ -115,5 +115,5 @@ extension HomeView {
 
 #Preview {
     HomeView()
-        .environmentObject(DeveloperPreview.instance.homeViewModel)
+        .environmentObject(PreviewSamples.homeViewModel)
 }
