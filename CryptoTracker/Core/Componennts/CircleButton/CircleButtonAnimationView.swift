@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct CircleButtonAnimationView: View {
     
     @Binding var animate: Bool
@@ -19,6 +20,7 @@ struct CircleButtonAnimationView: View {
             .animation(.easeOut(duration: 1.0), value: animate)
     }
 }
+
 
 #Preview {
     CircleButtonAnimationView(animate: .constant(true))
