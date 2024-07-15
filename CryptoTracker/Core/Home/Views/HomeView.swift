@@ -91,6 +91,11 @@ extension HomeView {
             }
         }
         .listStyle(PlainListStyle())
+        .refreshable {
+            withAnimation(.easeInOut) {
+                viewModel.reloadData()
+            }
+        }
     }
     
     
@@ -115,6 +120,15 @@ extension HomeView {
             
             Text("Price")
                 .frame(width: Double(UIScreen.current?.bounds.size.width ?? 0) / 3, alignment: .trailing)
+            
+            Button {
+                withAnimation(.easeInOut) {
+                    viewModel.reloadData()
+                }
+            } label: {
+                Image(systemName: "goforward")
+            }
+            .rotationEffect(Angle(degrees: viewModel.isLoading ? 360 : 0), anchor: .center)
         }
         .font(.caption)
         .foregroundStyle(Color.theme.secondaryText)
