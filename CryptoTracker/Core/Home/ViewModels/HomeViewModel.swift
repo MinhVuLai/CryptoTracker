@@ -20,6 +20,8 @@ final class HomeViewModel: ObservableObject {
     
     private let coinDataService = CoinDataService()
     private let marketDataService = MarketDataService()
+    private let portfolioDataService = PortfolioDataService()
+    
     private var cancellables = Set<AnyCancellable>()
     
     
@@ -45,6 +47,15 @@ final class HomeViewModel: ObservableObject {
             }
             .store(in: &cancellables)
         
+        // updates portfolioCoins
+        $allCoins
+            .combineLatest(portfolioDataService.$savedEntities)
+            .map(mapAllCoinsToPortfolioCoins)
+            .sink { [weak self] returnedCoins in
+                self?.portfolioCoins = returnedCoins
+            }
+            .store(in: &cancellables)
+        
         // updates marketData
         marketDataService.$marketData
             .map(mapGlobalMarketData)
@@ -52,6 +63,11 @@ final class HomeViewModel: ObservableObject {
                 self?.statistics = returnedStatistics
             }
             .store(in: &cancellables)
+    }
+    
+    
+    func updatePortfolio(coin: CoinModel, amount: Double) {
+        portfolioDataService.updatePortfolio(coin: coin, amount: amount)
     }
     
     
@@ -65,6 +81,17 @@ final class HomeViewModel: ObservableObject {
                     coin.symbol.lowercased().contains(lowercasedText) ||
                     coin.id.lowercased().contains(lowercasedText)
         }
+    }
+    
+    
+    private func mapAllCoinsToPortfolioCoins(allCoins: [CoinModel], portfolioEntities: [PortfolioEntity]) -> [CoinModel] {
+        allCoins
+            .compactMap { (coin) -> CoinModel? in
+                guard let entity = portfolioEntities.first(where: { $0.coinID == coin.id }) else {
+                    return nil
+                }
+                return coin.updateHoldings(amount: entity.amount)
+            }
     }
     
     

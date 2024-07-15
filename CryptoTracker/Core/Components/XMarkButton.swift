@@ -11,10 +11,12 @@ import SwiftUI
 struct XMarkButton: View {
     
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject private var viewModel: HomeViewModel
     
     var body: some View {
         Button {
             dismiss()
+            viewModel.searchText = ""
         } label: {
             Image(systemName: "xmark")
                 .font(.headline)
@@ -25,4 +27,5 @@ struct XMarkButton: View {
 
 #Preview {
     XMarkButton()
+        .environmentObject(PreviewSamples.homeViewModel)
 }
