@@ -35,7 +35,7 @@ final class HomeViewModel: ObservableObject {
     
     
     init() {
-        addSubscribers()
+        self.addSubscribers()
     }
     
     

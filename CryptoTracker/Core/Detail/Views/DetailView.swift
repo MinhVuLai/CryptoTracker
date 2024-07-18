@@ -25,21 +25,78 @@ struct DetailLoadingView: View {
 
 struct DetailView: View {
     
-    let coin: CoinModel
+    @StateObject private var viewModel: DetailViewModel
+    private let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
+    private let spacing: CGFloat = 30
     
     
     init(coin: CoinModel) {
-        self.coin = coin
-        print("INITILIZING DETAIL VIEW FOR: \(coin.name.uppercased())")
+        _viewModel = StateObject(wrappedValue: DetailViewModel(coin: coin))
     }
     
     
     var body: some View {
-        Text(coin.name)
+        ScrollView {
+            VStack(spacing: 20) {
+                Text("")
+                    .frame(height: 150)
+                
+                overviewSection
+                additionalSection
+            }
+            .padding()
+        }
+        .navigationTitle(viewModel.coin.name)
     }
 }
 
 
+extension DetailView {
+    
+    private var overviewSection: some View {
+        Group {
+            Text("Overview")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundStyle(Color.theme.accent)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Divider()
+            
+            LazyVGrid(columns: columns,
+                      alignment: .leading,
+                      spacing: spacing) {
+                ForEach(viewModel.overviewStatistics) { stat in
+                    StatisticView(stat: stat)
+                }
+            }
+        }
+    }
+    
+    
+    private var additionalSection: some View {
+        Group {
+            Text("Additional Details")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundStyle(Color.theme.accent)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Divider()
+            
+            LazyVGrid(columns: columns,
+                      alignment: .leading,
+                      spacing: spacing) {
+                ForEach(viewModel.additionalStatistics) { stat in
+                    StatisticView(stat: stat)
+                }
+            }
+        }
+    }
+    
+}
+
+
 #Preview {
-    DetailView(coin: PreviewSamples.coin)
+    NavigationStack {
+        DetailView(coin: PreviewSamples.coin)
+    }
 }
