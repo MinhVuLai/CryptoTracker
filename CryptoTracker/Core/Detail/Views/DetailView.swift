@@ -26,6 +26,9 @@ struct DetailLoadingView: View {
 struct DetailView: View {
     
     @StateObject private var viewModel: DetailViewModel
+    
+    @State private var showFullDescription: Bool = false
+    
     private let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
     private let spacing: CGFloat = 30
     
@@ -44,11 +47,13 @@ struct DetailView: View {
                 VStack(spacing: 20) {
                     overviewSection
                     additionalSection
+                    websiteSection
                 }
                 .padding()
             }
         }
         .navigationTitle(viewModel.coin.name)
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 navigationBarTrailing
@@ -81,12 +86,41 @@ extension DetailView {
                 .frame(maxWidth: .infinity, alignment: .leading)
             Divider()
             
+            descriptionSection
+            
             LazyVGrid(columns: columns,
                       alignment: .leading,
                       spacing: spacing) {
                 ForEach(viewModel.overviewStatistics) { stat in
                     StatisticView(stat: stat)
                 }
+            }
+        }
+    }
+    
+    
+    private var descriptionSection: some View {
+        ZStack {
+            if let coinDescription = viewModel.coinDescription, !coinDescription.isEmpty {
+                VStack(alignment: .leading) {
+                    Text(coinDescription)
+                        .font(.callout)
+                        .foregroundStyle(Color.theme.secondaryText)
+                        .lineLimit(showFullDescription ? nil : 3)
+                    
+                    Button {
+                        withAnimation(.easeInOut) {
+                            showFullDescription.toggle()
+                        }
+                    } label: {
+                        Text(showFullDescription ? "Less" : "Read more...")
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .padding(.vertical, 4)
+                    }
+                    .tint(Color.pink)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
     }
@@ -111,6 +145,23 @@ extension DetailView {
         }
     }
     
+    
+    private var websiteSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            if let websiteString = viewModel.websiteURL,
+               let url = URL(string: websiteString) {
+                Link("Website", destination: url)
+            }
+            
+            if let redditString = viewModel.redditURL,
+               let url = URL(string: redditString) {
+                Link("Reddit", destination: url)
+            }
+        }
+        .font(.headline)
+        .tint(Color.pink)
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
 }
 
 
